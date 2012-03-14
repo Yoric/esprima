@@ -3097,11 +3097,17 @@ parseStatement: true, parseSourceElement: true */
             }
         }
 
-        extra.comments.push({
+        var comment = {
             range: [start, end],
+            end:   {
+              column: index - lineStart,
+              line: lineNumber
+            },
             type: type,
             value: value
-        });
+        };
+
+        extra.comments.push(comment);
     }
 
     function scanComment() {
